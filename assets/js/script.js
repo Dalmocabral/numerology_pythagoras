@@ -94,3 +94,60 @@ function calculateExpressionNumber() {
 document.getElementById('nome').addEventListener('input', () => {
   calculateExpressionNumber();
 });
+
+
+
+
+function calculateSoulMotivation() {
+  let fullname = document.getElementById('nome').value.toUpperCase();
+  let vowels = ['A', 'E', 'I', 'O', 'U'];
+  let soulMotivation = 0;
+
+  for (let i = 0; i < fullname.length; i++) {
+    let char = fullname.charAt(i);
+    if (vowels.includes(char) && alphanumericTable[char]) {
+      soulMotivation += alphanumericTable[char];
+    }
+  }
+
+  while (soulMotivation > 9) {
+    if (soulMotivation === 11 || soulMotivation === 22 || soulMotivation === 33) {
+      break;
+    }
+    soulMotivation = (soulMotivation + '').split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+  }
+
+  document.getElementById('resultado-motivacao-alma').textContent = `O número da motivação da alma é ${soulMotivation}.`;
+}
+
+document.getElementById('nome').addEventListener('input', () => {
+  calculateExpressionNumber();
+  calculateSoulMotivation();
+});
+
+
+function desafio() {
+  const nome = document.getElementById('nome').value;
+  const dataNascimento = new Date(document.getElementById('data-nascimento').value);
+
+  let dia = (dataNascimento.getDate() + 1).toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+  if (dia > 9) {
+    dia = dia.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+  }
+
+  const mes = (dataNascimento.getMonth() + 1).toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+  const ano = dataNascimento.getFullYear().toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+  let anoReduzido = ano.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+
+  if (anoReduzido > 9) {
+    anoReduzido = anoReduzido.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+  }
+
+  const resultado1 = Math.abs(dia - mes);
+  const resultado2 = Math.abs(dia - anoReduzido);
+  const desafio = Math.abs(resultado1 - resultado2);
+
+  document.getElementById('resultadoDesafio').textContent = `Seu desafio é ${desafio}.`;
+}
+
+document.getElementById('data-nascimento').addEventListener('input', desafio);
