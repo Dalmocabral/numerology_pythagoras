@@ -28,7 +28,7 @@ function calcularEstradaDaVida() {
       document.getElementById('resultado').textContent = `${nome}, sua estrada da vida é ${estradaDaVida}.`;
     } else {
       const resultadoFinal = estradaDaVida > 9 ? (estradaDaVida.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b))) : estradaDaVida;
-      document.getElementById('resultado').textContent = `${nome}, sua estrada da vida é ${resultadoFinal}.`;
+      document.getElementById('resultado').textContent = `estrada da vida é ${resultadoFinal}.`;
     }
   }
   
@@ -52,11 +52,45 @@ function calcularEstradaDaVida() {
     }
   
     if (numeroReduzidoDia !== 11 && numeroReduzidoDia !== 22) {
-      document.getElementById('resultado-dia').textContent = `O número reduzido do dia é ${numeroReduzidoDia}.`;
+      document.getElementById('resultado-dia').textContent = `Dia do Nascimento é ${numeroReduzidoDia}.`;
     } else {
-      document.getElementById('resultado-dia').textContent = `O número reduzido do dia é ${numeroReduzidoDia} (números mestres não são reduzidos).`;
+      document.getElementById('resultado-dia').textContent = `Dia do Nascimento é ${numeroReduzidoDia} (números mestres não são reduzidos).`;
     }
   }
   
   document.getElementById('data-nascimento').addEventListener('input', calcularNumeroReduzidoDia);
-  
+
+
+const alphanumericTable = {
+  "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6,
+  "G": 7, "H": 8, "I": 9, "J": 1, "K": 2, "L": 3,
+  "M": 4, "N": 5, "O": 6, "P": 7, "Q": 8, "R": 9,
+  "S": 1, "T": 2, "U": 3, "V": 4, "W": 5, "X": 6,
+  "Y": 7, "Z": 8
+}
+
+
+function calculateExpressionNumber() {
+  let fullname = document.getElementById('nome').value.toUpperCase();
+  let expressionNumber = 0;
+
+  for (let i = 0; i < fullname.length; i++) {
+    let char = fullname.charAt(i);
+    if (alphanumericTable[char]) {
+      expressionNumber += alphanumericTable[char];
+    }
+  }
+
+  while (expressionNumber > 9) {
+    if (expressionNumber === 11 || expressionNumber === 22 || expressionNumber === 33) {
+      break;
+    }
+    expressionNumber = (expressionNumber + '').split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+  }
+
+  document.getElementById('resultado-expressao').textContent = `O número de expressão é ${expressionNumber}.`;
+}
+
+document.getElementById('nome').addEventListener('input', () => {
+  calculateExpressionNumber();
+});
