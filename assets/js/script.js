@@ -151,3 +151,36 @@ function desafio() {
 }
 
 document.getElementById('data-nascimento').addEventListener('input', desafio);
+
+
+function calcularValorReduzido() {
+  let fullname = document.getElementById('nome').value.toUpperCase();
+  let parts = fullname.split(' ');
+  let valoresReduzidos = [];
+
+  for (let i = 0; i < parts.length; i++) {
+    let valorReduzido = 0;
+    for (let j = 0; j < parts[i].length; j++) {
+      let char = parts[i].charAt(j);
+      if (alphanumericTable[char]) {
+        valorReduzido += alphanumericTable[char];
+      }
+    }
+
+    while (valorReduzido > 9) {
+      valorReduzido = (valorReduzido + '').split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+    }
+
+    valoresReduzidos.push(valorReduzido);
+  }
+
+  let table = '<table><tr><th>Nome</th><th>Resultado</th></tr>';
+  for (let i = 0; i < parts.length; i++) {
+    table += '<tr><td>' + parts[i] + '</td><td>' + valoresReduzidos[i] + '</td></tr>';
+  }
+  table += '</table>';
+
+  document.getElementById('resultado-nome-reduzido').innerHTML = table;
+}
+
+document.getElementById('nome').addEventListener('input', calcularValorReduzido);
