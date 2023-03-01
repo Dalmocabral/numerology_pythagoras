@@ -1,41 +1,46 @@
 function calcularEstradaDaVida() {
+    // Obtemos os valores do campo "nome" e "data-nascimento"
     const nome = document.getElementById('nome').value;
     const dataNascimento = new Date(document.getElementById('data-nascimento').value);
   
+    // Calculamos o valor reduzido do dia de nascimento
     let dia = (dataNascimento.getDate() + 1).toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
-    //console.log(dia);
     if (dia > 9) {
       dia = dia.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
-      //console.log(dia);
     }
   
+    // Calculamos o valor reduzido do mês de nascimento
     const mes = (dataNascimento.getMonth() + 1).toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
-    //console.log(mes);
-    const ano = dataNascimento.getFullYear().toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
-    //console.log(ano);
-    let anoReduzido = ano.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
-    //console.log(anoReduzido);
   
+    // Calculamos o valor reduzido do ano de nascimento
+    const ano = dataNascimento.getFullYear().toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+    let anoReduzido = ano.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+  
+    // Reduzimos o ano novamente caso ele seja maior que 9
     if (anoReduzido > 9) {
       anoReduzido = anoReduzido.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
-      //console.log(anoReduzido);
     }
   
+    // Calculamos a estrada da vida
     const estradaDaVida = (parseInt(dia) + parseInt(mes) + parseInt(anoReduzido));
-    //console.log(estradaDaVida);
   
+    // Verificamos se a estrada da vida é um número mestre (11 ou 22)
     if (estradaDaVida === 11 || estradaDaVida === 22) {
-      document.getElementById('resultado').textContent = `${nome}, sua estrada da vida é ${estradaDaVida}.`;
+      document.getElementById('resultado').innerHTML = `sua estrada da vida é ${estradaDaVida}.`;
+      document.getElementById('c5').innerHTML = `<span class="num c5"> ${estradaDaVida}</span>`;
     } else {
+      // Reduzimos a estrada da vida caso ela seja maior que 9
       const resultadoFinal = estradaDaVida > 9 ? (estradaDaVida.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b))) : estradaDaVida;
-      document.getElementById('resultado').textContent = `estrada da vida é ${resultadoFinal}.`;
+      document.getElementById('resultado').innerHTML = `estrada da vida é ${resultadoFinal}`;
+      document.getElementById('c5').innerHTML = `<span class="num c5"> ${resultadoFinal}`;
+
     }
   }
   
+  // Adicionamos um evento para calcular a estrada da vida sempre que o campo "data-nascimento" for alterado
   document.getElementById('data-nascimento').addEventListener('input', () => {
     calcularEstradaDaVida();
   });
-  
 
   // FUNÇÃO PARA CALCULAR O DIA DE NASCIMENTO
   function calcularNumeroReduzidoDia() {
@@ -52,9 +57,12 @@ function calcularEstradaDaVida() {
     }
   
     if (numeroReduzidoDia !== 11 && numeroReduzidoDia !== 22) {
-      document.getElementById('resultado-dia').textContent = `Dia do Nascimento é ${numeroReduzidoDia}.`;
+      document.getElementById('resultado-dia').innerHTML = `Dia do Nascimento é ${numeroReduzidoDia}.`;
+      document.getElementById('c7').innerHTML = `<span class="num c7"> ${numeroReduzidoDia}</span>`;
+      
     } else {
-      document.getElementById('resultado-dia').textContent = `Dia do Nascimento é ${numeroReduzidoDia} (números mestres não são reduzidos).`;
+      document.getElementById('resultado-dia').innerHTML = `Dia do Nascimento é ${numeroReduzidoDia} (números mestres não são reduzidos).`;
+      document.getElementById('c7').innerHTML = `<span class="num c7"> ${numeroReduzidoDia}</span>`;
     }
   }
   
@@ -88,7 +96,8 @@ function calculateExpressionNumber() {
     expressionNumber = (expressionNumber + '').split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
   }
 
-  document.getElementById('resultado-expressao').textContent = `O número de expressão é ${expressionNumber}.`;
+  document.getElementById('resultado-expressao').innerHTML = `O número de expressão é ${expressionNumber}.`;
+  document.getElementById('c8').innerHTML = `<span class="num c8">${expressionNumber}</span>`;
 }
 
 document.getElementById('nome').addEventListener('input', () => {
@@ -117,7 +126,8 @@ function calculateSoulMotivation() {
     soulMotivation = (soulMotivation + '').split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
   }
 
-  document.getElementById('resultado-motivacao-alma').textContent = `O número da motivação da alma é ${soulMotivation}.`;
+  document.getElementById('resultado-motivacao-alma').innerHTML = `O número da motivação da alma é ${soulMotivation}.`;
+  document.getElementById('c9').innerHTML = `<span class="num c9"> ${soulMotivation}</span>`;
 }
 
 document.getElementById('nome').addEventListener('input', () => {
@@ -147,7 +157,9 @@ function desafio() {
   const resultado2 = Math.abs(dia - anoReduzido);
   const desafio = Math.abs(resultado1 - resultado2);
 
-  document.getElementById('resultadoDesafio').textContent = `Seu desafio é ${desafio}.`;
+  document.getElementById('resultadoDesafio').innerHTML = `Seu desafio é ${desafio}.`;
+  document.getElementById('c11').innerHTML = `<span class="num c11"> ${desafio}</span>`;
+  
 }
 
 document.getElementById('data-nascimento').addEventListener('input', desafio);
@@ -184,3 +196,5 @@ function calcularValorReduzido() {
 }
 
 document.getElementById('nome').addEventListener('input', calcularValorReduzido);
+
+
