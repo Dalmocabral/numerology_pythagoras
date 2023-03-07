@@ -11,42 +11,57 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-<link rel="stylesheet" href="assets\css\index.css">
+  <link rel="stylesheet" href="assets\css\index.css">
 </head>
+
 <body>
 
-<div class="container">
-  <section class="inputForm">
-    <form>
+  <div class="container">
+    <div class="text-center" style="margin-top: 80px; color: #f7f7f7;">
+      <h1>Numerologia Pitagórica</h1>
+      <hr>
+    </div>
+    <section class="inputForm">
+      <form>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
-      
+
         <label for="data-nascimento">Data de Nascimento:</label>
-        <input type="date" id="data-nascimento" name="data-nascimento" required>     
-        
+        <input type="date" id="data-nascimento"9 name="data-nascimento" required>
+
       </form>
-  </section>
-  <div id="allNumbers" bis_skin_checked="1">
-    <span id="c5"></span>
-    <span id="c7"></span>
-    <span id="c8"></span>
-    <span id="c9"></span>
-    <span id="c11"></span>
+    </section>
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <div id="allNumbers" bis_skin_checked="1">
+          <span id="c5"></span>
+          <span id="c7"></span>
+          <span id="c8"></span>
+          <span id="c9"></span>
+          <span id="c11"></span>
+        </div>
+        <br>
+        <br>
+        <div>
+          <div id="resultado"></div>
+          <div id="resultado-dia"></div>
+        </div>
+
+    
+
+
+<!--
+    <p id="resultado"></p>
+    <p id="resultado-dia"></p>
+    <p id="resultado-expressao"></p>
+    <p id="resultado-motivacao-alma"></p>
+    <p id="resultadoDesafio"></p>
+    <div id="resultado-nome-reduzido"></div>
+-->
+
   </div>
-  <section>
 
-  </section>
-  
-  
-  
-      <p id="resultado"></p>
-      <p id="resultado-dia"></p>
-      <p id="resultado-expressao"></p>
-      <p id="resultado-motivacao-alma"></p>
-      <p id="resultadoDesafio"></p>
-      <div id="resultado-nome-reduzido"></div>
-
-  
+</div>
 </div>
 
 
@@ -58,20 +73,19 @@
 
 
 
-
-  
   <footer>
     <!-- place footer here -->
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="assets\js\script.js"></script>
+  <script src="assets/js/significado.js"></script>
 </body>
 
 </html>

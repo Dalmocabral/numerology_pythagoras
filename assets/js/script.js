@@ -1,3 +1,19 @@
+
+
+const alphanumericTable = {
+  "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6,
+  "G": 7, "H": 8, "I": 9, "J": 1, "K": 2, "L": 3,
+  "M": 4, "N": 5, "O": 6, "P": 7, "Q": 8, "R": 9,
+  "S": 1, "T": 2, "U": 3, "V": 4, "W": 5, "X": 6,
+  "Y": 7, "Z": 8
+}
+
+
+
+
+
+
+
 function calcularEstradaDaVida() {
     // Obtemos os valores do campo "nome" e "data-nascimento"
     const nome = document.getElementById('nome').value;
@@ -26,13 +42,43 @@ function calcularEstradaDaVida() {
   
     // Verificamos se a estrada da vida é um número mestre (11 ou 22)
     if (estradaDaVida === 11 || estradaDaVida === 22) {
-      document.getElementById('resultado').innerHTML = `sua estrada da vida é ${estradaDaVida}.`;
+      document.getElementById('resultado').innerHTML = `
+      <section class="estradadavida">
+      <strong>Estrada da vida é </strong> ${estradaDaVida}
+      <br>
+      <br>
+      <strong>Aprendizado:</strong> ${numerology[estradaDaVida].Aprendizados}
+      <br>
+      <br>
+      <strong>Caracteristicas:</strong> ${numerology[estradaDaVida].Caracteristicas}
+      <br>
+      <br>
+      <strong>Manifestação Negativa:</strong> ${numerology[estradaDaVida].ManifestacaoNegativa}
+      <br>
+      <br>
+      </section>`;
       document.getElementById('c5').innerHTML = `<span class="num c5"> ${estradaDaVida}</span>`;
     } else {
       // Reduzimos a estrada da vida caso ela seja maior que 9
       const resultadoFinal = estradaDaVida > 9 ? (estradaDaVida.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b))) : estradaDaVida;
-      document.getElementById('resultado').innerHTML = `estrada da vida é ${resultadoFinal}`;
-      document.getElementById('c5').innerHTML = `<span class="num c5"> ${resultadoFinal}`;
+      document.getElementById('resultado').innerHTML = `
+      <section class="estradadavida">
+      <strong>Estrada da vida é </strong> ${resultadoFinal}
+      <br>
+      <br>
+      <strong>Aprendizado:</strong> ${numerology[resultadoFinal].Aprendizados}
+      <br>
+      <br>
+      <strong>Caracteristicas:</strong> ${numerology[resultadoFinal].Caracteristicas}
+      <br>
+      <br>
+      <strong>Manifestação Negativa:</strong> ${numerology[resultadoFinal].ManifestacaoNegativa}
+      <br>
+      <br>
+      </section>
+      `;
+      document.getElementById('c5').innerHTML = `<span class="num c5"> ${resultadoFinal}
+      `;
 
     }
   }
@@ -42,13 +88,13 @@ function calcularEstradaDaVida() {
     calcularEstradaDaVida();
   });
 
-  // FUNÇÃO PARA CALCULAR O DIA DE NASCIMENTO
+
   function calcularNumeroReduzidoDia() {
     const diaString = document.getElementById('data-nascimento').value;
     const dia = parseInt(diaString.split('-')[2]);
-  
+    
     let numeroReduzidoDia = dia;
-  
+    
     while (numeroReduzidoDia > 9) {
       numeroReduzidoDia = numeroReduzidoDia
         .toString()
@@ -56,28 +102,60 @@ function calcularEstradaDaVida() {
         .reduce((a, b) => parseInt(a) + parseInt(b));
     }
   
+    const resultado = document.getElementById('resultado-dia');
+    const c7 = document.getElementById('c7');
+  
     if (numeroReduzidoDia !== 11 && numeroReduzidoDia !== 22) {
-      document.getElementById('resultado-dia').innerHTML = `Dia do Nascimento é ${numeroReduzidoDia}.`;
-      document.getElementById('c7').innerHTML = `<span class="num c7"> ${numeroReduzidoDia}</span>`;
+      resultado.innerHTML = `
+        <section class="diadonascimento">
+          <strong>Dia do Nascimento é:</strong> ${numeroReduzidoDia}
+          <br><br>
+          ${numeronascimento[numeroReduzidoDia].numeros}
+          <br><br>
+          <strong>Lição Complementar:</strong> ${numeronascimento[numeroReduzidoDia].lição}
+        </section>`;
+      c7.innerHTML = `<span class="num c7">${numeroReduzidoDia}</span>`;
       
+      if (dia === 16) {
+        resultado.innerHTML = `
+          <section class="diadonascimento">
+            <strong>Dia do Nascimento é:</strong> ${numeroReduzidoDia}
+            <br><br>
+            ${numeronascimento[numeroReduzidoDia].numeros}
+            <br><br>
+            <strong>Lição Complementar:</strong> ${numeronascimento[numeroReduzidoDia].lição}
+            <br><br>
+            <strong>Dia ${dia}:</strong> ${numeronascimento[numeroReduzidoDia].dia16}
+          </section>`;
+      }
     } else {
-      document.getElementById('resultado-dia').innerHTML = `Dia do Nascimento é ${numeroReduzidoDia} (números mestres não são reduzidos).`;
-      document.getElementById('c7').innerHTML = `<span class="num c7"> ${numeroReduzidoDia}</span>`;
+      resultado.innerHTML = `
+        <section class="diadonascimento">
+          <strong>Dia do Nascimento é:</strong> ${numeroReduzidoDia}
+          <br><br>
+          ${numeronascimento[numeroReduzidoDia].numeros}
+          <br><br>
+          <strong>Lição Complementar:</strong> ${numeronascimento[numeroReduzidoDia].lição}
+        </section>`;
+      c7.innerHTML = `<span class="num c7">${numeroReduzidoDia}</span>`;
+      
+      if (dia === 16) {
+        resultado.innerHTML = `
+          <section class="diadonascimento">
+            <strong>Dia do Nascimento é:</strong> ${numeroReduzidoDia}
+            <br><br>
+            ${numeronascimento[numeroReduzidoDia].numeros}
+            <br><br>
+            <strong>Lição Complementar:</strong> ${numeronascimento[numeroReduzidoDia].lição}
+            <br><br>
+            <strong>Dia ${dia}:</strong> ${numeronascimento[numeroReduzidoDia].dia16}
+          </section>`;
+      }
     }
   }
   
   document.getElementById('data-nascimento').addEventListener('input', calcularNumeroReduzidoDia);
-
-
-const alphanumericTable = {
-  "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6,
-  "G": 7, "H": 8, "I": 9, "J": 1, "K": 2, "L": 3,
-  "M": 4, "N": 5, "O": 6, "P": 7, "Q": 8, "R": 9,
-  "S": 1, "T": 2, "U": 3, "V": 4, "W": 5, "X": 6,
-  "Y": 7, "Z": 8
-}
-
-
+  
 function calculateExpressionNumber() {
   let fullname = document.getElementById('nome').value.toUpperCase();
   let expressionNumber = 0;
